@@ -3,7 +3,6 @@
 Berikut ini adalah kode sumber BGLI _bot_ yang dibuat dengan bahasa pemrograman `PHP`.
 Adapun `telebot.php` merupakan `class` yang dibuat untuk mempermudah mengkomunikasikan antara sumber kode dengan API dari `Telegram`.
 
-
 # Cara menggunakan
 
 Gunakan PHP CLI untuk menjalankan _bot_ ini.

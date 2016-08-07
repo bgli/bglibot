@@ -97,7 +97,7 @@ class Telebot
 					$result = array(
 						'command' => str_replace('@'.$this->bot->username,'',$getCommand[0]),
 						'param' => $params,
-						'text'	=> $getCommand[$maxofcmd]
+						'text'	=> isset($getCommand[$maxofcmd])?$getCommand[$maxofcmd]:''
 						);				 
 			
 		}
@@ -164,7 +164,7 @@ class Telebot
 		switch ($command) {
 			case 'message':
 				$multipart = false;
-				$data['text'] = $this->text;
+				$data['text'] = isset($this->text)?$this->text:'';
 				$data['parse_mode'] = isset($options['parse_mode'])?$options['parse_mode']:'HTML';
 				$data['disable_web_page_preview']=isset($options['disable_web_preview'])?$options['disable_web_preview']:false;
 			case 'photo':

@@ -1,10 +1,6 @@
 <?php
 
-require 'token.php';
-require 'roles.php';
-require 'telebot.php';
-
-$bot = new Telebot(TOKEN);
+require 'core.php';
 
 while (true)
 {
@@ -21,42 +17,27 @@ while (true)
 	$updates = $bot->getUpdates($update_id);
 
 	foreach ($updates as $message)
-        {
-		$update_id = $message["update_id"];;
-		$message_data = $message["message"];
-	                    
-		if (isset($message_data["text"]))
-	        {
-				
-			$bot->chat_id = $message_data["chat"]["id"];
-			$bot->reply_id = $message_data["message_id"];
-	                            
-			$text = $message_data["text"];
-			$botMsg= $bot->getBotMessage($text,2);
-	
-			if ($botMsg != false)
-			{ 
-				switch ($botMsg->command)
+    {
+		$update_id = $message['update_id'];
+		$message_data = $message['message'];
+		
+		$bot->chat_id = isset($message_data['chat']['id'])?$message_data['chat']['id']:'';
+		$bot->reply_id = isset($message_data['message_id'])?$message_data['message_id']:'';
+	   
+	   // Membaca seluruh plugin dan function nya		    		
+			for ($i=0; $i < count($plugin_name) ; $i++)
+	        { 
+				$plugin_function = 'call_' . $plugin_name[$i];
+				if (function_exists($plugin_function))
 				{
-					case '/narsum':
-
-						if (count($botMsg->param) > 0) {
-							$bot->text = "Set <b>Narasumber</b> kepada: {$botMsg->text}";
-							file_put_contents('narasumber', $botMsg->text);
-						} else {
-							$narsum = file_get_contents('narasumber');
-							$bot->text = "<b>Narasumber</b> kuliah: {$narsum}";
-						}
-						$bot->send('message');	
-						break;
-						
-					default:
-				}
-				
-			}
-
-
-		}
+					$pResult = call_user_func_array($plugin_function,array($message_data, $bot));
+					if ($pResult->error == false)
+					{
+						//untuk debuging, pengecekan apakah bot sudah benar-benar terkirim
+						print_r($pResult->result);	
+					}
+				}	
+			}			
 	                    
 	}
             
