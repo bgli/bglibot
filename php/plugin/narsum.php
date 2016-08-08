@@ -2,14 +2,15 @@
 
 function call_narsum($data,$bot)
 {
+    echo "Calling Narsum Plugin\n";
 
     $result['error'] = true;
 	$text = isset($data['text'])?$data['text']:'';
-	 
+
 	if (!empty($text))
 	{
-				
-					
+
+
 			/* Dapatkan tiga kriteria perpesanan dari bot
 			 *  Kriteria satu:
 			 *    /narsum, mendapatkan nilai default dari nama narasumber
@@ -17,23 +18,23 @@ function call_narsum($data,$bot)
 			 *    /narsum help, menyajikan nilai balik dari (callback) cara penggunaan
 			 *  Kriteria ketiga:
 			 *    /narsum set nama_narsum, mengeset nama narasumber
-			 * 
+			 *
 			 *  Di sini kita menggunakan function getBotMessage dengan nilai MaxOfCMD = 2
 			 *  artinya Anda diberikan 2 buah paramenter.
-			 * 
+			 *
 			 *  /narsum set nama_narsum
 			 *    1      2    3
-			 * 
+			 *
 			 * 1. Nama perintah
 			 * 2. Paramenter pertama
-			 * 3. Paramenter kedua 
-			 * 
-			 */ 		
-			 
-		$botMsg= $bot->getBotMessage($text,2);	
-	
+			 * 3. Paramenter kedua
+			 *
+			 */
+
+		$botMsg= $bot->getBotMessage($text,2);
+
 			if ($botMsg != false)
-			{ 
+			{
 				switch ($botMsg->command)
 				{
 					case '/narsum':
@@ -41,7 +42,7 @@ function call_narsum($data,$bot)
 						if (count($botMsg->param) > 0)
 						{
 							$param = $botMsg->param[1];
-							
+
 							if ($param =='help')
 							{
 								$bot->text = "Cara Menggunakan";
@@ -64,11 +65,12 @@ function call_narsum($data,$bot)
 							else
 							{
 								$bot->text = "Tidak ada narasumber";
-							}	
+							}
 						}
-						$result['result'] = $bot->send('message');	
+                        $result['error'] = false;
+						$result['result'] = $bot->send('message');
 						break;
-					
+
 					case '/mulai':
 						break;
 					case '/selesai':
@@ -77,11 +79,11 @@ function call_narsum($data,$bot)
 						break;
 					case '/help':
 						break;
-						
+
 					default:
-				}	
+				}
 			}
 	}
-	
+
 	return (object)$result;
 }
