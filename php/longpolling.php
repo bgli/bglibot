@@ -1,6 +1,7 @@
 <?php
 
 require 'core.php';
+date_default_timezone_set('UTC');
 
 while (true)
 {
@@ -8,10 +9,10 @@ while (true)
  	$update_id  = 0; //mula-mula tepatkan nilai offset pada nol
 
 	//cek file apakah terdapat file "last_update_id"
-	if (file_exists("last_update_id"))
+	if (file_exists("temp/last_update_id"))
 	{
 	       //jika ada, maka baca offset tersebut dari file "last_update_id"
-	       $update_id = (int)file_get_contents("last_update_id");
+	       $update_id = (int)file_get_contents("temp/last_update_id");
 	}
 
 	$updates = $bot->getUpdates($update_id);
@@ -31,11 +32,12 @@ while (true)
 				if (function_exists($plugin_function))
 				{
 					$pResult = call_user_func_array($plugin_function,array($message_data, $bot));
-					if ($pResult->error == false)
+					/*if ($pResult->error == false)
 					{
 						//untuk debuging, pengecekan apakah bot sudah benar-benar terkirim
 						print_r($pResult->result);
 					}
+					*/
 				}
 			}
 
