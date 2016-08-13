@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/token.php';
+require 'lib/token.sample.php';
 require 'lib/telebot.php';
 
 $telebot = new Telebot(TOKEN, false);
