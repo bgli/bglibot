@@ -7,6 +7,7 @@ class Telebot
 
 	public $bot;
 	public $chat_id;
+	public $reply_to_message;
 	public $reply_id = 0;
 	public $file_id = null;
 	public $latitude, $longitude;
@@ -166,7 +167,7 @@ class Telebot
 				$multipart = false;
 				$data['text'] = isset($this->text)?$this->text:'';
 				$data['parse_mode'] = isset($options['parse_mode'])?$options['parse_mode']:'HTML';
-				$data['disable_web_page_preview']=isset($options['disable_web_preview'])?$options['disable_web_preview']:false;
+				$data['disable_web_page_preview']=isset($options['disable_web_page_preview'])?$options['disable_web_page_preview']:false;
 			case 'photo':
 			case 'document':
 			case 'audio':

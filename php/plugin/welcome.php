@@ -2,9 +2,7 @@
 
 function call_welcome($data,$bot){
 
-	 echo "Calling Welcome Plugin\n";
-
-	 $result['error'] = true;
+	$result['error'] = true;
 
 	 //cek member yg join, left, dan pin dari group
 	 $join_group = empty($data['new_chat_participant'])?false:true;

@@ -1,8 +1,6 @@
 <?php
 function call_rules($data,$bot)
 {
-    echo "Calling Narsum Plugin\n";
-
     $result['error'] = true;
 	$text = isset($data['text'])?$data['text']:'';
 
