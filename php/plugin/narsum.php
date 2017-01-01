@@ -1,10 +1,10 @@
 <?php
 
 
-function call_narsum($data,$bot)
+function call_narsum($bot)
 {
-
     $result['error'] = true;
+    $data = $bot->message;
 	$text = isset($data['text'])?$data['text']:'';
 	$options['parse_mode'] = 'Markdown'; //using markdown format
 	

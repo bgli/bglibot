@@ -8,6 +8,8 @@ class Telebot
 	public $bot;
 	public $chat_id;
 	public $reply_to_message;
+	public $message;
+	
 	public $reply_id = 0;
 	public $file_id = null;
 	public $latitude, $longitude;
@@ -64,7 +66,6 @@ class Telebot
 	/* ================
 	 * Get Bot Message
 	 * ================
-	 * @param string $text
 	 * @param integer $maxofcmd.
 	 *
 	 * 

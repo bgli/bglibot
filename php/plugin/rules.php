@@ -1,7 +1,8 @@
 <?php
-function call_rules($data,$bot)
+function call_rules($bot)
 {
     $result['error'] = true;
+    $data = $bot->message;
 	$text = isset($data['text'])?$data['text']:'';
 
     $rules = <<<EOF

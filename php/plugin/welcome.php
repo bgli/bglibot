@@ -1,9 +1,9 @@
 <?php
 
-function call_welcome($data,$bot){
+function call_welcome($bot){
 
 	$result['error'] = true;
-
+	$data = $bot->message;
 	 //cek member yg join, left, dan pin dari group
 	 $join_group = empty($data['new_chat_participant'])?false:true;
 	 $left_group = empty($data['left_chat_participant'])?false:true;

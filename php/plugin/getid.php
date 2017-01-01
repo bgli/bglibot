@@ -1,9 +1,10 @@
 <?php
 
-function call_getid($data,$bot)
+function call_getid($bot)
 {
 
 	$result['error'] = true;
+	$data = $bot->message;
 	$text = isset($data['text'])?$data['text']:'';
 	
 	if (!empty($text))

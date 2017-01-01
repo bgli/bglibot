@@ -20,20 +20,23 @@ while (true)
 	foreach ($updates as $message)
     {
 		$update_id = $message['update_id'];
-		$message_data = $message['message'];
-
+		//$message_data = $message['message'];
+		
+		$bot->message = isset($message['message'])?$message['message']:'';
+		$message_data = $bot->message;
+		
 		$bot->chat_id = isset($message_data['chat']['id'])?$message_data['chat']['id']:'';
 		$bot->reply_id = isset($message_data['message_id'])?$message_data['message_id']:'';
 		$bot->reply_to_message = isset($message_data['reply_to_message'])?$message_data['reply_to_message']:'';
 		
-		print_r($message_data);
+		//print_r($message_data);
 	   // Membaca seluruh plugin dan function nya
 			for ($i=0; $i < count($plugin_name) ; $i++)
 	        {
 				$plugin_function = 'call_' . $plugin_name[$i];
 				if (function_exists($plugin_function))
 				{
-					$pResult = call_user_func_array($plugin_function,array($message_data, $bot));
+					$pResult = call_user_func($plugin_function,$bot);
 					/*if ($pResult->error == false)
 					{
 						//untuk debuging, pengecekan apakah bot sudah benar-benar terkirim

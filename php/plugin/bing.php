@@ -7,12 +7,12 @@
 
 
 /* 
- * First, you must set The BING_APPID before using this plugin.
+ * First, you must set The BING_APPID before using this plugin on the config file.
  * The BING_APPID is a value that enables the API to validate that a request is from a registered Bing application developer.
  * Getting an BING_APPID is a straightforward process. First, go to the Bing Developer Center and sign in with your Windows Live ID. 
  * After signing in, you will be presented with a link to create a new AppID. 
 */
-define('BING_APPID','');
+//define('BING_APPID','');
 
 function BingSearch($search,$count=5,$safesearch='Moderate')
 {
@@ -79,16 +79,17 @@ function BingUrlExtract($url){
 }
 
 
-function call_bing($data,$bot){
+function call_bing($bot){
 
 	$result['error'] = true;
+	$data = $bot->message;
 	$text = isset($data['text'])?$data['text']:'';
 	
 	if (!empty($text))
 	{
 
 	
-		$botMsg= $bot->getBotMessage($text,1);	
+		$botMsg= $bot->getBotMessage($text);	
 		$options =  array ('parse_mode' => 'HTML','disable_web_page_preview'=> TRUE);
 		
 		

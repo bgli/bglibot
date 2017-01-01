@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/token.php';
+require 'lib/config.php';
 require 'lib/telebot.php';
 
 // Daftar seluruh plugins
