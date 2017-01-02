@@ -25,6 +25,8 @@ while (true)
 		$bot->message = isset($message['message'])?$message['message']:'';
 		$message_data = $bot->message;
 		
+		print_r($bot->message);
+		
 		$bot->chat_id = isset($message_data['chat']['id'])?$message_data['chat']['id']:'';
 		$bot->reply_id = isset($message_data['message_id'])?$message_data['message_id']:'';
 		$bot->reply_to_message = isset($message_data['reply_to_message'])?$message_data['reply_to_message']:'';

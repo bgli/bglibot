@@ -2,6 +2,7 @@
 
 require 'lib/config.php';
 require 'lib/telebot.php';
+require 'lib/database.php';
 
 // Daftar seluruh plugins
 $plugin_dir = array_diff(scandir(__DIR__ .'/plugin'), array('..', '.'));
@@ -18,3 +19,4 @@ if (!empty($plugin_dir)){
 }
 
 $bot = new Telebot(TOKEN);
+$bot->db = new Database('db/bglibot.sqlite');

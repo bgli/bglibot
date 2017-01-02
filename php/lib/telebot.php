@@ -10,6 +10,8 @@ class Telebot
 	public $reply_to_message;
 	public $message;
 	
+	public $db;
+	
 	public $reply_id = 0;
 	public $file_id = null;
 	public $latitude, $longitude;
